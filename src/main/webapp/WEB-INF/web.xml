@@ -7,20 +7,10 @@
 
     <display-name>Spirits App</display-name>
 
-    <!-- Main Servlet Mapping -->
-    <servlet>
-        <servlet-name>IDCard</servlet-name>
-        <servlet-class>example.IDCard</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>IDCard</servlet-name>
-        <url-pattern>/IDCard</url-pattern>
-    </servlet-mapping>
-
-    <!-- Welcome Page -->
+    <!-- ✅ Set your HTML files as the welcome pages -->
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>LoginBAD.html</welcome-file>
+        <welcome-file>RegisterBAD.html</welcome-file>
     </welcome-file-list>
 
 </web-app>

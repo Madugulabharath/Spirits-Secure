@@ -50,17 +50,17 @@
     </dependency>
 
     <!-- ✅ MySQL Connector (JDBC Driver) -->
-<dependency>
-  <groupId>com.mysql</groupId>
-  <artifactId>mysql-connector-j</artifactId>
-  <version>8.4.0</version>
-</dependency>
-
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>8.4.0</version>
+    </dependency>
 
   </dependencies>
 
   <build>
-    <finalName>ROOT</finalName> <!-- WAR name for Render or Tomcat root -->
+    <!-- ✅ This defines WAR file name -->
+    <finalName>ROOT</finalName>
 
     <plugins>
 
@@ -75,14 +75,13 @@
         </configuration>
       </plugin>
 
-      <!-- ✅ WAR plugin -->
+      <!-- ✅ WAR plugin (no deprecated tags now) -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.3.2</version>
         <configuration>
           <failOnMissingWebXml>false</failOnMissingWebXml>
-          <warName>ROOT</warName>
         </configuration>
       </plugin>
 

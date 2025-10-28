@@ -16,13 +16,10 @@ import java.sql.ResultSet;
 public class LoginBAD extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // ✅ Render-ready DB credentials
-   private static final String DB_URL = System.getenv("DB_URL");
+    // ✅ Database credentials (fetched from environment variables)
+    private static final String DB_URL = System.getenv("DB_URL");
     private static final String DB_USER = System.getenv("DB_USER");
-   private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
-   
-
-
+    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -31,13 +28,16 @@ public class LoginBAD extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=UTF-8");
 
         try {
+            // ✅ Load MySQL JDBC Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
+            // ✅ Query to check user credentials
             String query = "SELECT * FROM register22 WHERE username = ? AND passwords = ?";
 
+            // ✅ Try-with-resources to auto-close connections
             try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement ps = con.prepareStatement(query)) {
 
@@ -45,23 +45,45 @@ public class LoginBAD extends HttpServlet {
                 ps.setString(2, password);
 
                 try (ResultSet rs = ps.executeQuery()) {
+
                     if (rs.next()) {
-                        response.getWriter().println("<h2>Login Successful! Welcome " + username + "</h2>");
+                        // ✅ Successful login page
+                        response.getWriter().println(
+                            "<html><body style='font-family:Arial;background-color:#e0ffe0;text-align:center;padding-top:50px;'>" +
+                            "<h2 style='color:green;'>Login Successful!</h2>" +
+                            "<h3>Welcome, " + username + "!</h3>" +
+                            "</body></html>"
+                        );
                     } else {
-                        response.getWriter().println("<h3>Invalid Username or Password. Try Again.</h3>");
+                        // ❌ Invalid login page
+                        response.getWriter().println(
+                            "<html><body style='font-family:Arial;background-color:#ffe0e0;text-align:center;padding-top:50px;'>" +
+                            "<h3 style='color:red;'>Invalid Username or Password</h3>" +
+                            "<a href='LoginBAD.html'>Try Again</a>" +
+                            "</body></html>"
+                        );
                     }
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.getWriter().println("<h3 style='color:red;'>Error: " + e.getMessage() + "</h3>");
+            response.getWriter().println(
+                "<html><body style='font-family:Arial;background-color:#ffe0e0;text-align:center;padding-top:50px;'>" +
+                "<h3 style='color:red;'>Error: " + e.getMessage() + "</h3>" +
+                "</body></html>"
+            );
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().println("<h3>Please use POST method to login.</h3>");
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().println(
+            "<html><body style='font-family:Arial;text-align:center;padding-top:50px;'>" +
+            "<h3>Please use POST method to login.</h3>" +
+            "</body></html>"
+        );
     }
 }
