@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image:linear-gradient( 60deg, red,rgb(175, 17, 196),rgb(11, 11, 197),rgb(243, 228, 20));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 300px;
+            user-select: none;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #242121;
+            border-radius: 20PX;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #0caeee;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 20PX;
+            margin-left:2%;
+        }
+        input[type="submit"]:hover {
+            background-image:linear-gradient( 160deg, red,rgb(175, 17, 196),rgb(11, 11, 197),rgb(243, 228, 20));
+            border-radius: PX;
+            padding: 17px;
+        }
+    </style>
+</head>
+<body>
+   
+    <form action="LoginBAD" method="post">
+         <h2> Login </h2>
+         <hr>
+        Username: <input type="text" name="username" required><br>
+        Password: <input type="password" name="password" required><br>
+        <input type="submit" value="L O G I N">
+        <br>
+         <a href="RegisterBAD.html">don't have account? register now </a>
+    </form>
+</body>
+</html>
