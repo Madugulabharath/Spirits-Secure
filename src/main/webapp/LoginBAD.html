@@ -43,9 +43,7 @@
         }
 
         input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="tel"] {
+        input[type="password"] {
             width: 100%;
             padding: 10px;
             margin: 8px -8px;
@@ -72,28 +70,26 @@
         a {
             text-decoration: none;
         }
-
     </style>
 </head>
 <body>
     <form action="LoginBAD" method="post">
-        
-        <!-- Login text + Logo beside -->
         <div class="login-header">
             <h1 style="margin-left: 1%;">Login</h1>
-            
             <img src="rathsImages/BADLogo.png" alt="Spirit Logo">
         </div>
 
         <h2 style="color: green;">Welcome Back Dear</h2>
         <hr>
 
-        Username: <input type="text" name="username" required><br>
-        Password: <input type="password" name="password" required><br>
-        <input type="submit" value="L O G I N">
-        <br>
-        <a href="RegisterBAD.html">Don't have an account? Register now</a>
+        <label>Username / Email / Mobile:</label>
+        <input type="text" name="identifier" required><br>
 
+        <label>Password:</label>
+        <input type="password" name="password" required><br>
+
+        <input type="submit" value="L O G I N"><br>
+        <a href="RegisterBAD.html">Don't have an account? Register now</a>
     </form>
 </body>
 </html>

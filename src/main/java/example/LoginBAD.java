@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 public class LoginBAD extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // ✅ Database credentials (fetched from environment variables)
+    // ✅ Environment-based credentials
     private static final String DB_URL = System.getenv("DB_URL");
     private static final String DB_USER = System.getenv("DB_USER");
     private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
@@ -25,41 +25,41 @@ public class LoginBAD extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String username = request.getParameter("username");
+        String identifier = request.getParameter("identifier"); 
         String password = request.getParameter("password");
 
         response.setContentType("text/html;charset=UTF-8");
 
         try {
-            // ✅ Load MySQL JDBC Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // ✅ Query to check user credentials
-            String query = "SELECT * FROM register22 WHERE username = ? AND passwords = ?";
+            
+            String query = "SELECT * FROM register22 WHERE (username = ? OR email = ? OR phnumber = ?) AND passwords = ?";
 
-            // ✅ Try-with-resources to auto-close connections
             try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement ps = con.prepareStatement(query)) {
 
-                ps.setString(1, username);
-                ps.setString(2, password);
+                ps.setString(1, identifier);
+                ps.setString(2, identifier);
+                ps.setString(3, identifier);
+                ps.setString(4, password);
 
                 try (ResultSet rs = ps.executeQuery()) {
 
                     if (rs.next()) {
-                        // ✅ Successful login page
+                        String user = rs.getString("username");
+
                         response.getWriter().println(
                             "<html><body style='font-family:Arial;background-color:#e0ffe0;text-align:center;padding-top:50px;'>" +
                             "<h2 style='color:green;'>Login Successful!</h2>" +
-                            "<h3>Welcome, " + username + "!</h3>" +
+                            "<h3>Welcome, " + user + "!</h3>" +
                             "</body></html>"
                         );
                     } else {
-                        // ❌ Invalid login page
                         response.getWriter().println(
                             "<html><body style='font-family:Arial;background-color:#ffe0e0;text-align:center;padding-top:50px;'>" +
-                            "<h3 style='color:red;'>Invalid Username or Password</h3>" +
-                            "<a href='LoginBAD.html'>Try Again</a>" +
+                            "<h3 style='color:red;'>Invalid credentials! Please try again.</h3>" +
+                            "<a href='LoginBAD.html'>Back to Login</a>" +
                             "</body></html>"
                         );
                     }
