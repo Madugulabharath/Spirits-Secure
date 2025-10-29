@@ -51,13 +51,20 @@
             border-radius: PX;
             padding: 17px;
         }
+        .spiritlogo {
+            width:50%;
+            height: 50%;
+            background-image: repeating-radial-gradient(160deg , red,green, yellow);
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
    
     <form action="LoginBAD" method="post">
-    	<h1>WELCOME BACK</h1>
-         <h2> Login </h2>
+    	<h1 style="text-decoration: underline;">Login </h1>
+        
+         <h2 style="color: green;"> Welcome Back Dear</h2>
          <hr>
         Username: <input type="text" name="username" required><br>
         Password: <input type="password" name="password" required><br>
@@ -65,5 +72,6 @@
         <br>
          <a href="RegisterBAD.html">don't have account? register now </a>
     </form>
+    
 </body>
 </html>
