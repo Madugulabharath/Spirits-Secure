@@ -31,7 +31,7 @@
         input[type="tel"] {
             width: 100%;
             padding: 10px;
-            margin: 8px 0;
+            margin: 8px -10px;
             border-radius: 5px;
             border: 1px solid #242121;
             border-radius: 20PX;
@@ -49,15 +49,34 @@
         }
         input[type="submit"]:hover {
             background-image:linear-gradient( 160deg, red,rgb(175, 17, 196),rgb(11, 11, 197),rgb(243, 228, 20));
-            border-radius: PX;
+            border-radius: 10PX;
             padding: 17px;
+        }
+        .login-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .login-header img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-left: 37%;
+            background-color: rgb(255, 255, 255);
         }
     </style>
 </head>
 <body>
 
 <form action="RegisterBAD" method="post">
-    <h2>User Registration</h2>
+     <div class="login-header">
+            <h1 style="margin-left: 1%; text-decoration: underline;">Register</h1>
+            <img src="rathsImages/BADLogo.png" alt="Spirit Logo">
+        </div>
+
     <hr>
     <input type="text" id="username" name="username" required placeholder="Enter your NAME">
     <input type="email" id="email" name="email" required placeholder="Enter your EMAIL">
